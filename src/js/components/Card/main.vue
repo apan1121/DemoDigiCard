@@ -97,7 +97,7 @@
         </div>
 
         <div class="v-card-tool">
-            <a class="btn btn-secondary btn-block" href="vcard.vcf">
+            <a class="btn btn-secondary btn-block" :href="`vcard-${chooseLang}.vcf`">
                 {{ $t('DownloadVCF') }}
             </a>
             <button class="btn btn-success btn-block" @click="ShareFlag = true">

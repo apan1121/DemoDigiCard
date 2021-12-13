@@ -1,0 +1,120 @@
+@import '../common/_variable.scss';
+
+.imgLiquidFill{
+    img {
+        display: none;
+    }
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.container {
+    max-width: calc(100% - 50px)!important;
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%!important;
+    }
+}
+
+.v-card-page{
+    width: 90vw;
+    max-width: $spacer * 25;
+    margin: 10px auto;
+
+    .v-card{
+        padding: $spacer * 1 0 $spacer * 1;
+        background: $white;
+        box-shadow: 0px 0px $spacer $gray-500;
+        border-radius: $spacer * 0.5;
+        margin-bottom: $spacer;
+        .v-card-hole{
+            margin: $spacer / 2 auto;
+            border-radius: $spacer / 2;
+            width: 80%;
+            max-width: $spacer * 10;
+            box-shadow: 0px 0px $spacer $gray-500 inset;
+            height: $spacer;
+        }
+        .v-card-wrapper{
+            padding: $spacer;
+            .v-card-avatar{
+                width: $spacer * 8;
+                height: $spacer * 8;
+                border-radius: 50%;
+                margin: 0 auto;
+                border: 1px solid $gray-500;
+            }
+            .v-card-title{
+                text-align: center;
+                font-size: $spacer * 2.5;
+                font-weight: 900;
+            }
+            .v-card-content{
+                padding: $spacer;
+                .v-card-item{
+                    display: flex;
+                    font-size: $spacer * 1.2;
+                    padding: $spacer / 2;
+                    color: $gray-800;
+                    .v-card-item-title{
+                        flex: none;
+                        padding: 0px $spacer / 2;
+                        width: $spacer * 3;
+                        text-align: center;
+                    }
+                    .v-card-item-content{
+                        flex: 1;
+                        padding: 0px $spacer / 2;
+                        a {
+                            color: $gray-800;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .v-card-lang{
+        margin: $spacer / 2 0px;
+        .v-card-lang-item{
+            display: inline-block;
+            padding: $spacer / 4 $spacer;
+            background: $gray-400;
+            border-radius: $spacer / 2;
+            font-size: $spacer * 0.75;
+            color: $white;
+            cursor: pointer;
+            &.select{
+                background: $gray-600;
+            }
+            &:hover{
+                background: $gray-500;
+            }
+        }
+    }
+    .v-card-share{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background: rgba($gray-800, 0.5);
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .v-card-share-wrapper{
+            width: 200px;
+            height: 200px;
+            padding: $spacer;
+            background: $white;
+            border-radius: $spacer * 0.5;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

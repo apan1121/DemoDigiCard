@@ -72,9 +72,15 @@
                             <i class="fab fa-line"></i>
                         </div>
                         <div class="v-card-item-content">
-                            <a target="_blank" :href="'line://ti/p/' + $t('Card.facebook')">
+                            <span>{{ $t('Card.line') }}</span>
+                            <!-- <a target="_blank" :href="'line://ti/p/' + $t('Card.line')">
                                 {{ $t('Card.line') }}
                             </a>
+                            <a target="_blank" :href="'http://line.me/ti/p/' + $t('Card.line')">
+                                {{ $t('Card.line') }}
+                            </a> -->
+                            <div class="line-it-button" data-lang="en" data-type="friend" data-env="REAL"   data-lineId="@apan1121" style="display: none;"></div>
+                            <!-- <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script> -->
                         </div>
                     </div>
                 </div>
@@ -155,6 +161,13 @@ export default {
     created(){},
     mounted(){
         $('body').trigger('resizeImg');
+        this.$nextTick(() => {
+            const script = document.createElement('script');
+            script.async = 'async';
+            script.defer = 'defer';
+            script.src = 'https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js';
+            document.querySelector('head').appendChild(script);
+        });
     },
     updated(){
     },

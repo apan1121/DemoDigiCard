@@ -72,14 +72,14 @@
                             <i class="fab fa-line"></i>
                         </div>
                         <div class="v-card-item-content">
-                            <span>{{ $t('Card.line') }}</span>
+                            <div class="copy-btn" @click="clipboard($t('Card.line'))">{{ $t('Card.line') }}</div>
                             <!-- <a target="_blank" :href="'line://ti/p/' + $t('Card.line')">
                                 {{ $t('Card.line') }}
                             </a>
                             <a target="_blank" :href="'http://line.me/ti/p/' + $t('Card.line')">
                                 {{ $t('Card.line') }}
                             </a> -->
-                            <div class="line-it-button" data-lang="en" data-type="friend" data-env="REAL"   data-lineId="apan1121" style="display: none;"></div>
+                            <!-- <div class="line-it-button" data-lang="en" data-type="friend" data-env="REAL"   data-lineId="apan1121" style="display: none;"></div> -->
                             <!-- <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script> -->
                         </div>
                     </div>
@@ -119,9 +119,11 @@
     </div>
 </template>
 <script>
+import ClipboardJS from 'clipboard';
 import { AwesomeQR } from 'awesome-qr';
 import { mapActions, mapMutations, mapGetters } from 'vuex';
 
+import { popup } from 'lib/common/util';
 // import $ from 'jquery';
 // import 'bootstrap';
 
@@ -161,13 +163,6 @@ export default {
     created(){},
     mounted(){
         $('body').trigger('resizeImg');
-        this.$nextTick(() => {
-            const script = document.createElement('script');
-            script.async = 'async';
-            script.defer = 'defer';
-            script.src = 'https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js';
-            document.querySelector('head').appendChild(script);
-        });
     },
     updated(){
     },
@@ -177,6 +172,30 @@ export default {
         ...mapMutations({}),
         chooseLangAct(langKey){
             this.$i18n.locale = langKey;
+        },
+        clipboard(value){
+            // eslint-disable-next-line no-new
+            const clipboard = new ClipboardJS('.copy-btn', {
+                text(){
+                    return value;
+                },
+            });
+            clipboard.on('success', (e) => {
+                popup.success({
+                    html: '複製成功',
+                    showConfirmButton: false,
+                });
+                // console.info('Action:', e.action);
+                // console.info('Text:', e.text);
+                // console.info('Trigger:', e.trigger);
+                e.clearSelection();
+            });
+
+            clipboard.on('error', (e) => {
+                // console.error('Action:', e.action);
+                // console.error('Trigger:', e.trigger);
+                e.clearSelection();
+            });
         },
     },
 };
